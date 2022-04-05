@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './ExpenseForm.css'
 
 // Using separate states for each input:
-export function ExpenseForm() {
+export function ExpenseForm(props) {
   const [enteredTitle, setEnteredTitle] = useState('')
   const [enteredAmount, setEnteredAmount] = useState('')
   const [enteredDate, setEnteredDate] = useState('')
@@ -20,12 +20,29 @@ export function ExpenseForm() {
     setEnteredDate(event.target.value)
   }
 
+  function submitHandler(event) {
+    event.preventDefault()
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    }
+    props.onSaveExpenseData(expenseData) //passing data to NewExpense Component
+    setEnteredAmount('')
+    setEnteredDate('')
+    setEnteredTitle('')
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
 
         <div className="new-expense__control">
@@ -34,6 +51,7 @@ export function ExpenseForm() {
             type="number"
             min="0.01"
             step="0.01"
+            value={enteredAmount}
             onChange={amountChangeHandler}
           />
         </div>
@@ -44,6 +62,7 @@ export function ExpenseForm() {
             type="date"
             min="2019-01-01"
             max="2022-12-31"
+            value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>
@@ -51,7 +70,6 @@ export function ExpenseForm() {
         <div className="new-expense__actions">
           <button type="submit">Add Expense</button>
         </div>
-
       </div>
     </form>
   )
@@ -68,7 +86,7 @@ export function ExpenseForm() {
 //   function titleChangeHandler(event) {
 //     setUserInput((prevState) => {
 //       return {
-//         ...prevState, 
+//         ...prevState,
 //         enteredTitle: event.target.value
 //       }
 //     })
@@ -77,7 +95,7 @@ export function ExpenseForm() {
 //   function amountChangeHandler(event) {
 //     setUserInput((prevState) => {
 //       return {
-//         ...prevState, 
+//         ...prevState,
 //         enteredAmount: event.target.value
 //       }
 //     })
@@ -86,7 +104,7 @@ export function ExpenseForm() {
 //   function dateChangeHandler(event) {
 //     setUserInput((prevState) => {
 //       return {
-//         ...prevState, 
+//         ...prevState,
 //         enteredDate: event.target.value
 //       }
 //     })
