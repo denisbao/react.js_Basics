@@ -1,4 +1,4 @@
-import { ExpenseList } from './components/ExpenseList'
+import { ExpenseList } from './components/Expenses/ExpenseList'
 
 import { data_expenses } from './data/expenses'
 
