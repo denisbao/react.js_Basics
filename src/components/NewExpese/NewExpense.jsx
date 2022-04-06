@@ -9,7 +9,7 @@ export function NewExpense(props) {
       ...enteredExpenseData,
       id: Math.random().toString()
     }
-    props.onAddExpense(expenseData)
+    props.onAddExpense(expenseData) //passing data to App Component
   }
 
   return (

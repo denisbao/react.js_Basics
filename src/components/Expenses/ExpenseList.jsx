@@ -17,13 +17,12 @@ export function ExpenseList(props) {
       <Card className="expenses">
         <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
         {props.expenses.map(expense => (
-          <div key={expense.id}>
-            <ExpenseItem
-              title={expense.title}
-              date={expense.date}
-              amount={expense.amount} 
-            />
-          </div>
+          <ExpenseItem 
+            key={expense.id}
+            title={expense.title}
+            date={expense.date}
+            amount={expense.amount} 
+          />
         ))}
       </Card>
     </>
