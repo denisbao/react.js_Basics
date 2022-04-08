@@ -1,5 +1,5 @@
 import { ExpenseList } from './components/Expenses/ExpenseList'
-import { NewExpense } from './components/NewExpese/NewExpense'
+import { NewExpense } from './components/NewExpense/NewExpense'
 import { useState } from 'react';
 
 import { data_expenses } from './data/expenses'
