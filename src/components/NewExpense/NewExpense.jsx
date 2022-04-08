@@ -2,7 +2,7 @@ import { ExpenseForm } from './ExpenseForm'
 
 import './NewExpense.css'
 import { NewExpenseButton } from './NewExpenseButton'
-import { useState } from 'react';
+import { useState } from 'react'
 
 export function NewExpense(props) {
   const [showForm, setShowForm] = useState(false)
@@ -10,24 +10,30 @@ export function NewExpense(props) {
   function saveExpenseDataHandler(enteredExpenseData) {
     const expenseData = {
       ...enteredExpenseData,
-      id: Math.random().toString()
+      id: Math.random().toString(),
     }
     props.onAddExpense(expenseData) //passing data to App Component
   }
 
-  function showFormOnHandler(){
+  function showFormOnHandler() {
     setShowForm(true)
   }
 
-  function showFormOffHandler(){
+  function showFormOffHandler() {
     setShowForm(false)
   }
 
   return (
-    <div className='new-expense'>
-      {!showForm && <NewExpenseButton onExpenseButtonClick={showFormOnHandler}/> }
-      {showForm && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancelExpense={showFormOffHandler}/>}
-      
+    <div className="new-expense">
+      {!showForm && (
+        <NewExpenseButton onExpenseButtonClick={showFormOnHandler} />
+      )}
+      {showForm && (
+        <ExpenseForm
+          onSaveExpenseData={saveExpenseDataHandler}
+          onCancelExpense={showFormOffHandler}
+        />
+      )}
     </div>
   )
 }

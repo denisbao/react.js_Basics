@@ -1,9 +1,10 @@
 import { ExpenseFilter } from './ExpenseFilter'
 import { Card } from '../UI/Card'
 import { ExpensesConditionalListing } from './ExpensesConditionalListing';
+import { ExpensesChart } from './ExpensesChart';
+import { useState } from 'react'
 
 import './ExpenseList.css'
-import { useState } from 'react'
 
 export function ExpenseList(props) {
   const [filteredYear, setFilteredYear] = useState('2022')
@@ -25,6 +26,7 @@ export function ExpenseList(props) {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
+        <ExpensesChart expenses={filteredList}/>
         <ExpensesConditionalListing list={filteredList}/>
       </Card>
     </>
